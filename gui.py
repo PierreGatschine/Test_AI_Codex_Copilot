@@ -2,6 +2,13 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import db
 
+# Placeholder globals. Actual widgets are created in main() after the Tk
+# root window is initialized.
+categorie_var = None
+titre_var = None
+texte_text = None
+lien_var = None
+
 def submit_form():
     categorie = categorie_var.get().strip()
     titre = titre_var.get().strip()
@@ -26,6 +33,12 @@ def main():
     root = tk.Tk()
     root.title("Ajout de réponse")
 
+    global categorie_var, titre_var, texte_text, lien_var
+    categorie_var = tk.StringVar(root)
+    titre_var = tk.StringVar(root)
+    texte_text = tk.Text(root, height=10, width=40)
+    lien_var = tk.StringVar(root)
+
     main_frame = ttk.Frame(root, padding=10)
     main_frame.grid(sticky=(tk.W, tk.E, tk.N, tk.S))
 
@@ -48,12 +61,6 @@ def main():
     submit_btn.grid(column=0, row=4, columnspan=2, pady=5)
 
     root.mainloop()
-
-
-categorie_var = tk.StringVar()
-titre_var = tk.StringVar()
-texte_text = tk.Text(height=10, width=40)
-lien_var = tk.StringVar()
 
 if __name__ == "__main__":
     main()
